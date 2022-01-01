@@ -122,7 +122,7 @@ function run() {
     var z = - theta * factor * Math.sin(theta + angleOffset);
     var y = rate * theta;
     // now that we have 3d coordinates, project them into 2d space:
-    var point = projectTo2d(x, y, z);
+    var point = projectTo2d(1.6*x, 0.9*y, z);
     // calculate point's color alpha level:
     point.alpha = Math.atan((y * factor / rate * 0.1 + 0.02 - z) * 40) * 0.35 + 0.65;
 
