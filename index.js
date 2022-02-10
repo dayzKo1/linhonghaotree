@@ -15,37 +15,37 @@ var factor = rate / 3;
 
 function run() {
   var ctx = document.getElementById('scene').getContext('2d'),
-      spirals = [
-        new Spiral({
-          foreground: "#220000", // Second shadow for red spiral
-          angleOffset: Math.PI * 0.92,
-          factor: 0.90 * factor
-        }),
-        new Spiral({
-          foreground: "#002211", // Second shadow for cyan spiral
-          angleOffset: -Math.PI * 0.08,
-          factor: 0.90 * factor
-        }),
-        new Spiral({
-          foreground: "#660000", // red spiral shadow
-          angleOffset: Math.PI * 0.95,
-          factor: 0.93 * factor
-        }),
-        new Spiral({
-          foreground: "#003322", // cyan spiral shadow
-          angleOffset: -Math.PI * 0.05,
-          factor: 0.93 * factor
-        }),
-        new Spiral({
-          foreground: "#ff0000", // red Spiral
-          angleOffset: Math.PI,
-          factor: factor
-        }),
-        new Spiral({
-          foreground: "#00ffcc", // cyan spiral
-          angleOffset: 0,
-          factor: factor
-        })];
+    spirals = [
+      new Spiral({
+        foreground: "#220000", // Second shadow for red spiral
+        angleOffset: Math.PI * 0.92,
+        factor: 0.90 * factor
+      }),
+      new Spiral({
+        foreground: "#002211", // Second shadow for cyan spiral
+        angleOffset: -Math.PI * 0.08,
+        factor: 0.90 * factor
+      }),
+      new Spiral({
+        foreground: "#660000", // red spiral shadow
+        angleOffset: Math.PI * 0.95,
+        factor: 0.93 * factor
+      }),
+      new Spiral({
+        foreground: "#003322", // cyan spiral shadow
+        angleOffset: -Math.PI * 0.05,
+        factor: 0.93 * factor
+      }),
+      new Spiral({
+        foreground: "#ff0000", // red Spiral
+        angleOffset: Math.PI,
+        factor: factor
+      }),
+      new Spiral({
+        foreground: "#00ffcc", // cyan spiral
+        angleOffset: 0,
+        factor: factor
+      })];
 
   renderFrame(); // animation loop starts here
 
@@ -65,7 +65,7 @@ function run() {
     var offset = 0;
     var lineSegments = computeLineSegments();
 
-    this.render = function(ctx) {
+    this.render = function (ctx) {
       offset -= 1;
       if (offset <= -period) {
         offset += period;
@@ -87,8 +87,8 @@ function run() {
       for (var offset = 0; offset > -period; offset--) {
         lineSegments[offset] = lines = [];
         for (
-          var theta = thetaMin + getThetaChangeRate(thetaMin, offset * lineSpacing / period, rate, factor); 
-          theta < thetaMax; 
+          var theta = thetaMin + getThetaChangeRate(thetaMin, offset * lineSpacing / period, rate, factor);
+          theta < thetaMax;
           theta += getThetaChangeRate(theta, lineSpacing, rate, factor)
         ) {
           thetaOld = (theta >= thetaMin) ? theta : thetaMin;
@@ -118,11 +118,11 @@ function run() {
   }
 
   function getPointByAngle(theta, factor, angleOffset, rate) {
-    var x = theta * factor *  Math.cos(theta + angleOffset);
+    var x = theta * factor * Math.cos(theta + angleOffset);
     var z = - theta * factor * Math.sin(theta + angleOffset);
     var y = rate * theta;
     // now that we have 3d coordinates, project them into 2d space:
-    var point = projectTo2d(1.6*x, 0.9*y, z);
+    var point = projectTo2d(1.6 * x, 0.9 * y, z);
     // calculate point's color alpha level:
     point.alpha = Math.atan((y * factor / rate * 0.1 + 0.02 - z) * 40) * 0.35 + 0.65;
 
@@ -145,3 +145,37 @@ function run() {
     window.setTimeout(callback, 1000 / 24);
   }
 }
+
+
+function closeModel() {
+  document.getElementById("model").style.display = 'none';
+  document.getElementById("modelDiv").style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function openModel() {
+  document.getElementById("model").style.display = 'block';
+  document.getElementById("modelDiv").style.display = 'block';
+  document.body.style.overflow = 'auto';
+}
+
+function button1() {
+  document.getElementById("model").style.left = `${randomNum(0, 1600)}px`;
+  document.getElementById("model").style.top = `${randomNum(0, 800)}px`;
+  // 不遮挡后面的内容将body设置为原始样式，也就是实现可滚动
+  document.body.style.overflow = 'auto';
+}
+
+function randomNum(minNum, maxNum) {
+  switch (arguments.length) {
+    case 1:
+      return parseInt(Math.random() * minNum + 1, 10);
+      break;
+    case 2:
+      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+      break;
+    default:
+      return 0;
+      break;
+  }
+} 
