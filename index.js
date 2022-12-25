@@ -159,6 +159,10 @@ function openModel() {
   document.body.style.overflow = 'auto';
 }
 
+function dianwo() {
+  document.getElementById("dianwo").innerHTML = 'I love u,too~';
+}
+
 function button1() {
   document.getElementById("model").style.left = `${randomNum(0, 1600)}px`;
   document.getElementById("model").style.top = `${randomNum(0, 800)}px`;

@@ -3,6 +3,7 @@
 
 <head>
   <script src="index.js"></script>
+  <embed src="cityofstars.mp3" hidden="true" autostart="true" loop="true" />
   <style>
     * {
       padding: 0;
@@ -41,29 +42,30 @@
       justify-content: center;
       align-items: center;">
   <div style="color:white"></div>
-  <div style="color:white;cursor: pointer;" onclick="openModel()"> 点我！❤ </div>
+  <div id="dianwo" style="color:white;cursor: pointer;" onclick="dianwo()"> 笨蛋，点我！ </div>
 
   <!-- 这个是用来遮罩的 -->
   <div id="modelDiv">
   </div>
   <!-- 这个是用来展示弹框内容的 -->
   <div id="model">
-    <div  style="display: flex; justify-content: flex-end;">
-      <div  style="height: 20px; width: 20px;border-radius: 50%; border: 2px solid red;text-align: center;"
+    <div style="display: flex; justify-content: flex-end;">
+      <div style="height: 20px; width: 20px;border-radius: 50%; border: 2px solid red;text-align: center;"
         onclick="button1()">
         X
       </div>
     </div>
-    <div style="margin-left: 100px;margin-bottom: 100px;">Ms.Guo,do you love me?</div>
+    <div style="margin-left: 50px;margin-bottom: 90px;">Ms.Guo,do you love me?</div>
     <div style="display: flex; justify-content: space-around;">
       <div style="height: 30px; width: 80px;border: 2px solid red;text-align: center;" onclick="closeModel()">
-        yes
+        sure
       </div>
       <div style="height: 30px; width: 80px;border: 2px solid red;text-align: center;" onclick="button1()">
         no
       </div>
     </div>
   </div>
+
 
   <div style="
     background-image: url(./tree2.png);
